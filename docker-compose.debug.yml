@@ -1,0 +1,18 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
+
+version: '3.4'
+
+services:
+  usercommentapplication:
+    image: usercommentapplication
+    build:
+      context: .
+      dockerfile: UserCommentApplication/Dockerfile
+      args:
+        - configuration=Debug
+    ports:
+      - 5092:5092
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
